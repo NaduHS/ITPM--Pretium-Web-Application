@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Comforter&display=swap');
+
+body{ 
+    font-family: cursive;
+}
+
+.h4{
+    color: white;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+.input-group{
+
+    position: absolute;
+    width: 348.76px;
+    height: 52.74px;
+    left: 933px;
+    top: 90px;
+
+  }
+
+/* .Header-Text{
+    text-align: center;
+    margin-left: 250px;
+} */
+

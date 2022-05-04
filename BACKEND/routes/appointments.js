@@ -29,7 +29,7 @@ router.route("/add").post((req, res)=>{
 
 })
 
-router.route("/").get((req, res)=>{
+router.route("/get").get((req, res)=>{
 
     Appointment.find().then((appointments)=>{
         res.json(appointments)
@@ -42,28 +42,22 @@ router.route("/").get((req, res)=>{
 // : should use to fetch the ID from URL
 // can also use POST instead of PUT
 //using asyncawait function
-router.route("/update/:id").put(async (req, res) => {
-    let appointmentID = req.params.id; // this id equal to /update/:id
-
-    //destructure
-    const {photographer, eventType, customerName, customerContactNo, customerEmail, date} = req.body;
-
-    const updateAppointment = {
-        photographer,
-        eventType,
-        customerName,
-        customerContactNo,
-        customerEmail,
-        date
-    }
-
-    const update = await Appointment.findByIdAndUpdate(appointmentID, updateAppointment).then(() => {
-        res.status(200).send({status: "Data Updated"})
-    }).catch((err) => {
-        console.log(err);
-        res.status(500).send({status: "Error with updating data", error: err.meaasge});
-    })
-})
+router.route('/update/:id').post((req, res) => {
+    Appointment.findById(req.params.id)
+      .then(appointment => {
+        appointment.photographer = req.body.photographer;
+        appointment.eventType = req.body.eventType;
+        appointment.customerName = req.body.customerName;
+        appointment.customerContactNo = req.body.customerContactNo;
+        appointment.customerEmail = req.body.customerEmail;
+        appointment.date = req.body.date;
+  
+        appointment.save()
+          .then(() => res.json('Appointment updated!'))
+          .catch(err => res.status(400).json('Error: ' + err));
+      })
+      .catch(err => res.status(400).json('Error: ' + err));
+  });
 
 router.route("/delete/:id").delete(async(req, res) => {
     let appointmentID = req.params.id;
@@ -76,14 +70,20 @@ router.route("/delete/:id").delete(async(req, res) => {
 })
 
 // get single appointment
-router.route("/get/:id").get(async(req, res) =>{
-    let appointmentID = req.params.id;
-    const appointment = await Appointment.findById(appointmentID).then((appointment) => {
-        res.status(200).send({status: "Single data fetched", appointment});
-    }).catch((err) => {
-        console.log(err.message);
-        res.status(500).send({status: "Error with getting single data", error: err.meaasge});
-    })
-})
+//router.route("/get/:id").get(async(req, res) =>{
+//    let appointmentID = req.params.id;
+//    const appointment = await Appointment.findById(appointmentID).then((appointment) => {
+ //       res.status(200).send({status: "Single data fetched", appointment});
+   // }).catch((err) => {
+     //   console.log(err.message);
+       // res.status(500).send({status: "Error with getting single data", error: err.meaasge});
+    //})
+//})
+
+router.route('/get/:id').get((req, res) => {
+    Appointment.findById(req.params.id)
+      .then(appointment => res.json(appointment))
+      .catch(err => res.status(400).json('Error: ' + err));
+  });
 
 module.exports = router;
