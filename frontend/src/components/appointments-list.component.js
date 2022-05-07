@@ -12,7 +12,7 @@ const Appointment = props => (
 
     <td>{props.appointment.date.substring(0,10)}</td>
     <td>
-      <Link to={"/edit/"+props.appointment._id} className='btn btn-info'><i class="fa-solid fa-pen-to-square"></i>&nbsp;edit</Link> | <a href="#" onClick={() => { props.deleteAppointment(props.appointment._id) }} className='btn btn-danger'><i class="fa-solid fa-trash-can"></i>&nbsp;delete</a>
+      <Link to={"/edit/"+props.appointment._id} className ="btn btn-outline-primary"><i class="fa-solid fa-pen-to-square"></i>&nbsp;edit</Link> | <a href="#" onClick={() => { props.deleteAppointment(props.appointment._id) }} className ="btn btn-danger"><i class="fa-solid fa-trash-can"></i>&nbsp;delete</a>
     </td>
   </tr>
 )
@@ -124,18 +124,18 @@ export default class AppointmentsList extends Component {
       <div>
         <div class="input-group">
 <div class="form-outline">
-    <input id="search-focus" type="search"  class="form-control" placeholder='Search By Name or Date' onChange={this.handleSearchArea}/>
+    <input id="search-focus" type="search"  class="form-control" placeholder='Search By Name or Date' onChange={this.handleSearchArea} style={{border: '3px solid black'}}/>
 </div>
 </div>
-        <h3>All Appointments</h3>
-        <table className="table">
-          <thead className="thead-light">
+        <h3>All Appointments</h3><br/>
+        <table className="table border shadow table table-striped border table-dark">
+          <thead className="thead-light" style={{fontWeight:'bold'}}>
             <tr>
-              <th>Photographer</th>
-              <th>Event Type</th>
+              <th scope="col">Photographer</th>
+              <th scope="col">Event Type</th>
 
-              <th>Date</th>
-              <th>Actions</th>
+              <th scope="col">Date</th>
+              <th scope="col">Actions</th>
             </tr>
           </thead>
           <tbody>

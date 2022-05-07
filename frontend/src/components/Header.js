@@ -25,18 +25,21 @@ export default function Header() {
           <div className='Nav-bar' >
             <MDBNavbarNav right className='Header-Text text-white'>
               <MDBNavbarItem active>
-                <MDBNavbarLink aria-current='page' href='/add'>
+                <MDBNavbarLink aria-current='page' href='/home'>
                   <h4>Home</h4>
                 </MDBNavbarLink>
               </MDBNavbarItem>
               <MDBNavbarItem>
-                <MDBNavbarLink href='/get'><h4>Features</h4></MDBNavbarLink>
+                <MDBNavbarLink href='#'><h4>Albums</h4></MDBNavbarLink>
               </MDBNavbarItem>
               <MDBNavbarItem>
-                <MDBNavbarLink href='#'><h4>Pricing</h4></MDBNavbarLink>
+                <MDBNavbarLink href='#'><h4>Admin</h4></MDBNavbarLink>
               </MDBNavbarItem>
               <MDBNavbarItem>
-                <MDBNavbarLink href='#'><h4>About</h4></MDBNavbarLink>
+                <MDBNavbarLink href='#'><h4>Registration</h4></MDBNavbarLink>
+              </MDBNavbarItem>
+              <MDBNavbarItem>
+                <MDBNavbarLink href='/get'><h4>Appointments</h4></MDBNavbarLink>
               </MDBNavbarItem>
             </MDBNavbarNav>
           </div>

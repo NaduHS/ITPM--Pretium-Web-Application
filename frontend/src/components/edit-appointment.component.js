@@ -19,7 +19,7 @@ export default class EditAppointment extends Component {
       photographer: '',
       eventType: '',
       customerName: '',
-      customerContactNo: '',
+      customerContactNo: Number,
       customerEmail: '',
       date: new Date()
     }
@@ -96,16 +96,30 @@ export default class EditAppointment extends Component {
     axios.post('http://localhost:5000/appointment/update/' + this.props.match.params.id, appointment)
       .then(res => console.log(res.data));
 
-    window.location = '/';
+    window.location = '/get';
   }
 
   render() {
     return (
-    <div>
-      <h3>Edit Appointment</h3>
+
+      <div className="col-md-8 mt-4 mx-auto" style={{
+        borderRadius:'5px',
+        backgroundColor:'#f2f2f2',
+        padding: '90px',
+        width: '80%',
+        boxShadow: '0 1px 56px -26px #000'
+        
+    }}
+    
+    >
+
+      <div class="row">
+      <div  className="col-md-12">
+           <div className="shadowBox">
+      <h3 className="h3 mb-3 font-weight-normal">Edit Appointment</h3>
       <form onSubmit={this.onSubmit}>
-        <div className="form-group"> 
-          <label>Photographer: </label>
+        <div className="form-group" style={{marginBottom:'15px'}}> 
+          <label style={{marginBottom:'5px'}}>Photographer: </label>
           <input  type="text"
               required
               className="form-control"
@@ -113,8 +127,8 @@ export default class EditAppointment extends Component {
               onChange={this.onChangePhotographer}
               />
         </div>
-        <div className="form-group"> 
-          <label>Event Type: </label>
+        <div className="form-group" style={{marginBottom:'15px'}}> 
+          <label style={{marginBottom:'5px'}}>Event Type: </label>
           <input  type="text"
               required
               className="form-control"
@@ -122,8 +136,8 @@ export default class EditAppointment extends Component {
               onChange={this.onChangeEventType}
               />
         </div>
-        <div className="form-group">
-          <label>Customer Name: </label>
+        <div className="form-group" style={{marginBottom:'15px'}}>
+          <label style={{marginBottom:'5px'}}>Customer Name: </label>
           <input 
               type="text" 
               className="form-control"
@@ -131,17 +145,17 @@ export default class EditAppointment extends Component {
               onChange={this.onChangeCustomerName}
               />
         </div>
-        <div className="form-group">
-          <label>Customer Contact No: </label>
+        <div className="form-group" style={{marginBottom:'15px'}}>
+          <label style={{marginBottom:'5px'}}>Customer Contact No: </label>
           <input 
-              type="text" 
+              type="number" 
               className="form-control"
               value={this.state.customerContactNo}
               onChange={this.onChangeCustomerContactNo}
               />
         </div>
-        <div className="form-group">
-          <label>Customer E-mail: </label>
+        <div className="form-group" style={{marginBottom:'15px'}}>
+          <label style={{marginBottom:'5px'}}>Customer E-mail: </label>
           <input 
               type="text" 
               className="form-control"
@@ -149,20 +163,29 @@ export default class EditAppointment extends Component {
               onChange={this.onChangeCustomerEmail}
               />
         </div>
-        <div className="form-group">
-          <label>Date: </label>
+        <div className="form-group" style={{marginBottom:'15px'}}>
+          <label style={{marginBottom:'5px'}}>Date: </label>
           <div>
             <DatePicker
+              className="form-control"
               selected={this.state.date}
               onChange={this.onChangeDate}
             />
           </div>
         </div>
         <br/>
-        <div className="form-group">
-          <input type="submit" value="Edit Appointment" className="btn btn-primary" />
-        </div>
+        <div className="row">
+									<div className="form-group col"  style={{marginTop:'15px'}}>	              		
+										<button type="submit" className="btn btn-success" ><i className="far fa-save"></i>&nbsp;Save</button>&nbsp;&nbsp;
+									</div>
+									<div className="form-group col"  style={{marginTop:'15px'}}>
+									<a href="/get" className="btn btn-danger"><i className="fas fa-times"></i>&nbsp;Cancel</a>
+									</div>              			
+							</div>
       </form>
+    </div>
+    </div>
+    </div>
     </div>
     )
   }
